@@ -74,8 +74,9 @@ const options = [
  ]
  
  let i = 0
- let totalvalue = 0
- let count = 0
+ let total = []
+ let count = 30
+ let timeOut
  
  populatecurrent(i)
  
@@ -90,24 +91,37 @@ const options = [
  
 
 
-    $('.button').click(function(){questionAdvance(this)})
+    $('.button').click(function(){questionAdvance(this, false)})
  }
 
- function questionAdvance(x){
-    if(x == 1 || x == -1)
-        totalvalue += x.value
-    else
-        totalvalue += -1
+ function questionAdvance(x, time){
+    count = 30;
+
+    $("#timer").text(count)
+
+    console.log(x.value)
+    
+    if(time != true && x.value == 1){
+        total.push("Correct!")
+    }
+    else{
+        total.push("Incorrect")
+    }
 
     $('#container').empty()
     i++
 
     if(i==options.length){
         i=0
-        $('#container').append(`<div>Estimated value: $${totalvalue}</div`)
+        let answerq = 0
+        total.forEach(function(e){
+            answerq++
+            $('#container').append(`<div>${answerq} : ${e}</div>`)
+        })
         $('#container').append(`<button id="reset">Reset</button>`)
         $('#reset').click(function(){
-            totalvalue = 0
+            total = []
+            answerq = 0
             $('#container').empty()
             populatecurrent(i)
         });
@@ -118,15 +132,15 @@ const options = [
   }
 
   function advanceClock(){
-            if(count < 30){
-                setTimeout(function(){
-                    count++
-                    console.log(count)
+            if(count > 0){
+                clearTimeout(timeOut)
+                timeOut = setTimeout(function(){
+                    count--
+                    $("#timer").text(count)
                     advanceClock()
-                }, 100);
+                }, 1000);
            }
             else{
-                count = 0;
-                questionAdvance(options[i])
+                questionAdvance(options[i], true)
             }
         }
