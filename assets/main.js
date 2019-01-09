@@ -1,72 +1,68 @@
 const options = [
     Cat1 = {
-        question: "This is a test question",
+        question: "Who is the protagonist of Final Fantasy 8?",
         options: [
             option1 = {
-                text: "Test Option 1",
+                text: "Sora",
                 value: -1,
             },
             option2 = {
-                text: "Test Option 2",
+                text: "Donald Duck",
                 value: -1,
             },
             option3 = {
-                text: "Test Option 3",
+                text: "Zelda",
                 value: -1,
             },
             option4 = {
-                text: "Test Option 4",
+                text: "Squall",
                 value: 1,
             }
         ]
     },
     Cat2 = {
-        question: "This is a test question 2",
+        question: "True or False: Final Fantasy XIV is an MMO",
         options: [
             option1 = {
-                text: "Test Option 1",
+                text: "False",
                 value: -1,
             },
             option2 = {
-                text: "Test Option 2",
+                text: "True",
                 value: 1,
             }
         ]
     },
     Cat3 = {
-        question: "This is a test question 3",
+        question: "This Final Fantasy character had a terrible shooter spinoff game based around them:",
         options: [
             option1 = {
-                text: "Test Option 1",
+                text: "Doomguy",
                 value: -1,
             },
             option2 = {
-                text: "Test Option 2",
+                text: "Vincent Valentine",
                 value: 1,
             },
             option3 = {
-                text: "Test Option 3",
+                text: "Yuna",
                 value: -1,
             }
         ]
     },
     Cat4 = {
-        question: "This is a test question 4",
+        question: "Whats the best healer job in FFXIV",
         options: [
             option1 = {
-                text: "Test Option 1",
+                text: "White Mage, obviously.",
                 value: 1,
             },
             option2 = {
-                text: "Test Option 2",
+                text: "Astrologian, if you're into tarot or whatever I guess",
                 value: -1,
             },
             option3 = {
-                text: "Test Option 3",
-                value: -1,
-            },
-            option4 = {
-                text: "Test Option 4",
+                text: "Scholar, the nerd class for nerds",
                 value: -1,
             }
         ]
@@ -82,11 +78,11 @@ const options = [
  
  function populatecurrent(i){
     advanceClock()
-    $('#container').append(`<div><h2>${options[i].question}</h2></div>`)
+    $('#container').append(`<p>${options[i].question}</p>`)
  
     for(k=0; k<options[i].options.length; k++){
         let current = options[i]
-        $('#container').append(`<div>${current.options[k].text} <button class="button" value="${current.options[k].value}">Select</button></div`)
+        $('#container').append(`<button class="button" value="${current.options[k].value}">${current.options[k].text}</button>`)
     }
  
 
